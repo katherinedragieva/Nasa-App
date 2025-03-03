@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add To Favourites</h2>
+
+<mat-dialog-content>
+  <div class="container-column modal-container">
+    <div class="input-container">
+      <p>Modify the title of your favourite photo:</p>
+      <mat-form-field class="title-input">
+        <input matInput [formControl]="imageTitle" />
+      </mat-form-field>
+    </div>
+
+    <img [src]="apodData.url" class="apod-image" />
+
+    <p>{{ apodData.explanation }}</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

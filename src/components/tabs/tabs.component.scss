@@ -1,0 +1,28 @@
+.tabs-container {
+  display: flex;
+  flex-direction: row;
+
+  .tabs {
+    color: black;
+    font-size: 18px;
+    margin: 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+
+    &.active-tab {
+      font-weight: 500;
+      border-bottom: 2px solid #015cbb;
+      padding-bottom: 5px;
+      transition:
+        border-bottom 0.3s ease,
+        transform 0.2s ease-in-out;
+    }
+  }
+}
+
+::ng-deep .mat-badge-content {
+  background-color: #015cbb !important;
+  color: #fff !important;
+}

@@ -1,0 +1,25 @@
+.page-title {
+  color: #9bdaf2;
+  text-align: center;
+  font-size: 24px;
+}
+
+.container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

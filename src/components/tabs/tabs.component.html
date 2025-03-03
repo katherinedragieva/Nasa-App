@@ -1,0 +1,19 @@
+<div class="tabs-container">
+  <a class="tabs" [routerLink]="['/apod']" routerLinkActive="active-tab"
+    >APOD</a
+  >
+  <a class="tabs" [routerLink]="['/mars-rover']" routerLinkActive="active-tab"
+    >Mars Rover Photos</a
+  >
+  <a
+    class="tabs"
+    [routerLink]="['/favourites-section']"
+    routerLinkActive="active-tab"
+    [matBadge]="favoritesCounter$ | async"
+    matBadgeOverlap="false"
+    matBadgeSize="large"
+    >Favourite Photos</a
+  >
+</div>
+
+<router-outlet></router-outlet>

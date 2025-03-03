@@ -1,0 +1,64 @@
+.container {
+  margin: 20px;
+
+  .rover-photos-form {
+    width: 300px;
+
+    .submit-button-container {
+      display: flex;
+      justify-content: end;
+
+      .submit-button {
+        width: fit-content;
+      }
+    }
+  }
+
+  .card-container {
+    margin-top: 20px;
+    
+    .main-card-title {
+      margin-left: 15px;
+    }
+    
+    .card-inner-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px; 
+  
+      mat-card {
+        width: calc(20% - 20px);
+        min-width: 200px;
+      }
+  
+      .card-title {
+        font-size: 16px;
+      }
+  
+      .card-subtitle {
+        font-size: 12px;
+        color: #bfbfbf;
+      }
+  
+      .image-link-container {
+        padding-top: 15px;
+  
+        .image-link {
+          font-size: 12px;
+          color: black;
+          text-decoration: none;
+        } 
+      }
+    }
+  }
+}
+
+
+:host {
+  ::ng-deep {
+    .rover-photos-form .mdc-floating-label {
+      font-size: 12px;
+    }
+  }
+}

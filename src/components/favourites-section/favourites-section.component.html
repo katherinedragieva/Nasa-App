@@ -1,0 +1,22 @@
+<h3 class="page-title">My Favorite Mars Photos</h3>
+
+@if(favorites$ | async; as favourites) {
+    <div class="cards-container">
+        @for(favourite of favourites; track favourite.url) {
+            <mat-card class="cards">
+                <mat-card-header class="card-header">
+                    <mat-card-title class="card-title">{{ favourite.title }}</mat-card-title>
+                </mat-card-header>
+                <img [src]="favourite.url" alt="Favorite Image"  class="favourite-image" />
+                <mat-card-content class="card-content">
+                    <p>{{ favourite.explanation }}</p>
+                </mat-card-content>
+                <mat-card-actions class="actions-button">
+                    <button mat-button (click)="removeFromFavourites(favourite.url)">
+                        Remove
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        }
+    </div>
+}

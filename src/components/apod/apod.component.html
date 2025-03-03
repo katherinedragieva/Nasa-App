@@ -1,0 +1,45 @@
+<h3 class="page-title">Astronomy Pictures</h3>
+
+@if (apods$ | async; as apods) {
+  <div class="apod-container">
+    @for (apod of apods; track apod.title) {
+      <div class="apod-inner-container">
+        <div class="apod-header">
+          <div class="apod-header-title">
+            <div class="nasa-image"></div>
+            <p class="apod-title">{{ apod.title }}</p>
+          </div>
+          <p class="apod-date">{{ apod.date }}</p>
+        </div>
+        <img
+          class="apod-images"
+          [src]="apod.url"
+          [alt]="apod.title"
+          (click)="showImageExplanation(apod)" />
+
+        @if (favouriteMap$ | async; as favouriteMap) {
+          <mat-icon
+            aria-hidden="false"
+            class="material-symbols-outlined favourites-icon"
+            [class.filled]="favouriteMap[apod.url]"
+            (click)="toggleFavourite(apod, favouriteMap[apod.url])">
+            {{ favouriteMap[apod.url] ? "favorite" : "favorite_border" }}
+          </mat-icon>
+        }
+
+        <div
+          class="apod-infomation-container"
+          [class.expanded]="imageVisibilityMap[apod.title]">
+          @if (imageVisibilityMap[apod.title]) {
+            <p class="apod-description">{{ apod.explanation }}</p>
+          } @else {
+            <span class="material-symbols-outlined"> info </span>
+            <p class="apod-infomation-text">
+              click on the image above to see the description
+            </p>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

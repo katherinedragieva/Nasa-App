@@ -1,0 +1,80 @@
+<h3 class="page-title">Mars Rover Photos</h3>
+
+<div class="container container-column">
+  <form class="rover-photos-form container-column">
+    <mat-form-field>
+      <mat-label>Select a Mars rover</mat-label>
+      <mat-select
+        [formControl]="roverName"
+        (selectionChange)="onSelectionChange()">
+        @for (rover of dropdownOptions; track rover) {
+          <mat-option [value]="rover">{{ rover }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Please add a Martian day:</mat-label>
+      <input
+        matInput
+        type="number"
+        [formControl]="sol"
+        (keypress)="validateNumber($event)" />
+    </mat-form-field>
+
+    <div class="submit-button-container">
+      <button
+        mat-flat-button
+        [disabled]="isSubmitButtonDisabled"
+        class="submit-button"
+        (click)="onSearchPhotos()">
+        Search photos
+      </button>
+    </div>
+  </form>
+
+  <div class="card-container">
+    @if (marsPhotosLoading$ | async) {
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+    @if (marsPhotos$ | async; as marsPhotos) {
+      @if (marsPhotos.length > 0) {
+        <p class="main-card-title">Enjoy Mars Rover Photos</p>
+
+        <div class="column-row card-inner-container">
+          @for (marsPhoto of marsPhotos; track marsPhoto.id) {
+            <mat-card appearance="outlined">
+              <mat-card-header>
+                <mat-card-title-group>
+                  <mat-card-title class="card-title">{{
+                    marsPhoto.rover.name
+                  }}</mat-card-title>
+                  <mat-card-subtitle class="card-subtitle"
+                    >Date {{ marsPhoto.rover.launch_date }}</mat-card-subtitle
+                  >
+                  <img
+                    mat-card-sm-image
+                    [src]="marsPhoto.img_src"
+                    alt="The images do not exist in the db, please follow the link below" />
+                </mat-card-title-group>
+              </mat-card-header>
+              <mat-card-content class="image-link-container">
+                <a [href]="marsPhoto.img_src" class="image-link"
+                  >Link to the full-size image</a
+                >
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+      } @else {
+        <p class="main-card-title">Search For Mars Rover Photos</p>
+      }
+    }
+    <mat-paginator
+      [length]="totalPhotos$ | async"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[25]"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>
