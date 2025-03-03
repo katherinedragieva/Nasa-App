@@ -40,20 +40,6 @@ export class NasaEffects {
     )
   );
 
-  //   loadMarsPhotos$ = createEffect(() =>
-  //     this.actions$.pipe(
-  //       ofType(loadMarsPhotos),
-  //       mergeMap(action =>
-  //         this.http.get(`${this.apiUrl}/mars-photos/api/v1/rovers/${action.rover}/photos?sol=${action.sol}&page=1&api_key=DEMO_KEY
-
-  // &api_key=${this.apiKey}`).pipe(
-  //           map((response: any) => loadMarsPhotosSuccess({ photos: response.photos })),
-  //           catchError(() => of({ type: '[NASA Mars Rover Photos ] Load Mars Photos Failed' }))
-  //         )
-  //       )
-  //     )
-  //   );
-
   loadMarsPhotos$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadMarsPhotos),
